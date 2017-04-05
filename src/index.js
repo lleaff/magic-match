@@ -1,10 +1,11 @@
 const splitLast = arr => [ arr.slice(0, arr.length - 1), arr[arr.length - 1] ];
 
-function _match_apply(dest, item, regexpMatches) {
+/**
+ * @param {(item, test, regexpMatches)=>*|*} dest
+ */
+function _match_apply(dest, ...args) {
   return typeof dest === 'function' ?
-      (regexpMatches !== undefined ?
-        dest(item, regexpMatches) :
-        dest(item)) :
+        dest(...args) :
         dest;
 }
 
@@ -15,7 +16,7 @@ export default function match(item, cases) {
       return _match_apply(dest, item);
     }
     let regexpMatches = null;
-    if (tests.some(test => {
+    const successfulTestI = tests.findIndex(test => {
       switch(typeof test) {
         case 'function':
           return test(item);
@@ -30,8 +31,9 @@ export default function match(item, cases) {
         default:
           return test === item;
       }
-    })) {
-      return _match_apply(dest, item, regexpMatches);
+    });
+    if (successfulTestI >= 0) {
+      return _match_apply(dest, item, tests[successfulTestI], regexpMatches);
     }
   };
 }
