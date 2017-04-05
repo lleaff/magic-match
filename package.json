@@ -1,0 +1,48 @@
+{
+  "name": "magic-match",
+  "version": "0.1.0",
+  "description": "Match expression with added suggar.",
+  "main": "lib/match.js",
+  "files": [
+    "lib",
+    "yarn.lock"
+  ],
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "prepublish": "npm build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lleaff/magic-match.git"
+  },
+  "keywords": [
+    "switch",
+    "match",
+    "expression",
+    "regex",
+    "regexp",
+    "syntactic",
+    "sugar",
+    "magic"
+  ],
+  "author": "lleaff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lleaff/magic-match/issues"
+  },
+  "homepage": "https://github.com/lleaff/magic-match#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.24.0"
+  },
+  "babel": {
+    "plugins": [
+      "add-module-exports"
+    ],
+    "presets": [
+      "es2015"
+    ]
+  }
+}
